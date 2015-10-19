@@ -83,6 +83,7 @@ html, body {
 
 #about {
   background-color: #f8f5f2 !important;
+  padding-bottom: 20px;
 }
 
 #about h4 {
@@ -162,6 +163,23 @@ nav.navbar li {
 nav #yourConventions:hover {
     background-color: #09496c;
 }
+
+
+    // ------------------------------------------------------------
+////// FAQ
+    // ------------------------------------------------------------
+
+#faq p {
+    margin-left: 20px;
+}
+#faq li {
+    padding: 5px;
+    padding-bottom:10px;
+}
+#faq h4 {
+    color: #0069d3;
+}
+
 
     // ------------------------------------------------------------
 ////// SAM'S HOME STYLES

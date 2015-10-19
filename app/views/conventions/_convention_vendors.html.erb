@@ -12,28 +12,34 @@
 
 <ul class="convention_vendors">
     <% vendors.each do |vendor| %>
-    <li class="row convention_vendor">
-
-        <div class="col-xs-5 vendor_name">
-            <%= link_to vendor.name, vendor %>
-        </div>
-
-        <div class="col-xs-4"></div>
-
-        <div class="col-xs-1 vendor_info">
-            <div class="vendor_info vendor_icons">
-                <a id="star<%=vendor.id%>" onclick="star(<%= vendor.id%>)" href="#">
-                    <i class="fa fa-star-o"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-xs-1 vendor_info">
-            <a id="popup" onclick="div_show()" href="#">
-                <i class="fa fa-map"></i>
-            </a>
-        </div>
-
+    <li class="row convention_vendor <%= vendor.cssTagClasses() %>">
+        <%= link_to vendor.name, vendor %>
+        <a id="star<%=vendor.id%>" onclick="star(<%= vendor.id%>)" class="star" href="javascript:;">
+            <i class="fa fa-star-o"></i>
+        </a>
     </li>
   <% end %>
 </ul>
+
+<%# Filter modal %>
+<div class="overlay">
+    <form id="filter_modal" class="jsForm">
+        <h3>Filter by...</h3>
+
+        <a href="javascript:;" class="close_overlay">
+            <i class="fa fa-times"></i>
+        </a>
+
+        <ul class="unordered">
+            <% tags.each do |tag| %>
+                <li>
+                    <input type="checkbox" value="tag_<%= tag.id %>"><%= tag.name %>
+                </li>
+            <% end %>
+        </ul>
+        <div class="jsForm_actions">
+            <button id="filter_vendors_submit" class="greenbtn btn">Submit</button>
+            <button class="close_overlay redbtn btn">Cancel</button>
+        </div>
+    </form>
+</div>

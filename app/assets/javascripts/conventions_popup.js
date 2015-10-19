@@ -7,21 +7,17 @@ function div_hide(){
 document.getElementById('openHere').style.display = "none";
 }
 
+// By default starts chronological
 function alphabetize(){
-if(document.getElementById('alphabetical').style.display == "none")
-{
-	document.getElementById('alphabet').style.fontWeight = 700;
-	document.getElementById('alphabet').style.color = "red";
-	document.getElementById('chronological').style.display = "none";
-	document.getElementById('alphabetical').style.display = "block";
-}
-else
-{
-	document.getElementById('alphabet').style.fontWeight = 400;
-	document.getElementById('alphabet').style.color = "gray";
-	document.getElementById('chronological').style.display = "block";
-	document.getElementById('alphabetical').style.display = "none";
-}
+    if ($("#alphabet").text().indexOf("ABC") > -1) { // Sort alphabetical
+        document.getElementById('chronological').style.display = "none";
+        document.getElementById('alphabetical').style.display = "block";
+        document.getElementById('alphabet').innerHTML = "Sort (Chronological)";
+    } else { // Sort chronological
+        document.getElementById('chronological').style.display = "block";
+        document.getElementById('alphabetical').style.display = "none";
+        document.getElementById('alphabet').innerHTML = "Sort (ABC)";
+    }
 }
 
 function sort() {
@@ -85,3 +81,32 @@ function star(x) {
 	}
 
 }
+
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Vendor filter modal
+
+$(document).ready(function() {
+
+    $("#filter_vendors").click(function() {
+        $("#filter_modal").parent().show();
+    })
+
+    $("#filter_vendors_submit").click(function() {
+        var checked = $("#filter_modal").find("input:checked");
+        // When none checked, we turn off the filter
+        if (checked.length < 1) {
+            $(".convention_vendor").show();
+        } else {
+            $(".convention_vendor").hide();
+            for (var i = 0; i < checked.length; i++ ){
+                var tagClass = checked[i].value
+                $("."+tagClass).show();
+            }
+        }
+        $("#filter_modal").parent().hide();
+        return false;
+    })
+
+})
